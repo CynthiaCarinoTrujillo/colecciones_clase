@@ -2,8 +2,10 @@ package ejercicio12_2;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 /**
  *
@@ -13,11 +15,13 @@ public class Contenedor<T extends Comparable<T>> {
 
     //array de T
     private T array[];
+    private List<T> listaT;
 
     public Contenedor(T[] tabla) {
 //        this.array = (T[]) new Object[0];
         //inicializa un array de genericos, el new objeto hace casting con el array de tipo T
         this.array=tabla;
+        listaT=new ArrayList<>();
     }
     
     //constructor que inicializa un array con longitud de 30
@@ -52,9 +56,7 @@ public class Contenedor<T extends Comparable<T>> {
         array[i] = (T) Integer.valueOf(random.nextInt(101)); // Números aleatorios entre 0 y 100
     }
 }
-
-
-    
+ 
 
     void eliminarAlInicio() {
         //comprobar que el array no este vacio, si la longitud es 0 esta vacio
@@ -92,21 +94,46 @@ public class Contenedor<T extends Comparable<T>> {
     }
     
     
-//    public <T> int[] buscarTodos(Object e){
-//    //devuelve una tabla con todas las ocurrencias de e 
-//        int tabla[]=new int[0];
-//        boolean tipo=e instanceof ;
-//        
-//        return tabla;
-//    }
+    public int[] buscarTodos(Object e){
+    //devuelve una tabla con los indices de las ocurrencias de e 
+        List<Integer> tablaIndices=new ArrayList<>(); //guardara los indices
+        
+        //debemos buscar los indices en el arraylist
+        for (int contador=0; contador < listaT.size();contador++){
+            if (e != null && e == listaT.get(contador)){
+                tablaIndices.add(contador);
+            }
+        }
+        
+        //convertir arraylist a array
+        int t1[]= new int[tablaIndices.size()]; //se crea un array int con la longitud del arraylist
+        //recorremos el array para asignar los valores del arraylist
+        for (int contador=0; contador < tablaIndices.size();contador++){
+            //se van copiando de la tablaindices a la tabla t1
+            t1[contador]=tablaIndices.get(contador);
+        }
+        
+        return t1;
+    }
     
     
     public <T> List<T> eliminaRepetidos(List<T> lista){
         //recibe una lista con elementos repetidos y devuelve otra lista eliminando los repetidos
-        List<T> listaSinRepetidos=new ArrayList<>();
-        //
-        
-        return listaSinRepetidos;
+        //se crea una variable set que eliminara los elementos repetidos de la lista
+        Set<T> conjuntoSinrepetir=new LinkedHashSet<>(lista);
+        //despues a lista se le asigna el conjunto SIN ELEMENTOS REPETIDOS
+        lista=new ArrayList<>(conjuntoSinrepetir);
+        return lista;
     }
+    
+    //metodo que elimina las ocurrencias de e devuelve true si la lista queda alterada
+    boolean eliminarTodos(Object e){
+        boolean resultado=listaT.remove(e);
+        return resultado;
+    }
+    
+    
+    
+    
     
 }
