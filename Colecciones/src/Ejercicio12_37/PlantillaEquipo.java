@@ -29,7 +29,7 @@ public class PlantillaEquipo {
     //muestra una lista de los dorsales con el nombre de los jugadores
     public static void mostrar() {
         for (Map.Entry<Integer, Jugador> valores : plantillaJugadores.entrySet()) {
-            System.out.println("Dorsal: " + valores.getKey() + "Nombre del jugador: " + valores.getValue().getNombreJugador());
+            System.out.println("Dorsal: " + valores.getKey() + " Nombre del jugador:" + valores.getValue().getNombreJugador());
         }
     }
 

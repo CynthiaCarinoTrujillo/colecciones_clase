@@ -18,7 +18,7 @@ public class Jugador {
     public Jugador(String nombreJugador, String dniJugador, String posicionJugador,double estatura) {
         this.nombreJugador = nombreJugador;
         this.dniJugador = dniJugador;
-        this.posicionJugador = posicion.valueOf(posicionJugador);
+        this.posicionJugador = posicion.valueOf(posicionJugador.toUpperCase());
         this.estatura=estatura;
     }
 
@@ -44,7 +44,7 @@ public class Jugador {
     }
 
     public void setPosicionJugador(String posicionJugador) {
-        this.posicionJugador = posicion.valueOf(posicionJugador);
+        this.posicionJugador = posicion.valueOf(posicionJugador.toUpperCase());
     }
 
     public double getEstatura() {
